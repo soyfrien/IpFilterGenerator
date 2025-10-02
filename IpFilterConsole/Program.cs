@@ -37,7 +37,7 @@ if (!string.IsNullOrEmpty(showLicenseArg))
 List<IpRange> allRanges = new List<IpRange>();
 if (string.IsNullOrEmpty(loadFromFileArg))
 {
-    Stream? stream = (new IpDatabaseLoader()).GetEmbeddedCsvStream(@"IpFilterLib.Databases.IP2LOCATION-LITE-DB1.CSV");
+    using Stream? stream = (new IpDatabaseLoader()).GetEmbeddedCsvStream(@"IpFilterLib.Databases.IP2LOCATION-LITE-DB1.CSV");
     allRanges = (new IpDatabaseLoader()).LoadFromStream(stream);
 }
 else
@@ -47,7 +47,7 @@ else
 }
 #endregion
 
-IpFilterGenerator ipFilterGenerator = new IpFilterGenerator();
+IpFilterGenerator ipFilterGenerator = new();
 List<IpRange> filtered = ipFilterGenerator.FilterByCountry(allRanges, countriesArg.Split('=')[1]
                                                                                                      .Split(',')
                                                                                                      .ToList());
@@ -58,6 +58,6 @@ try
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Oops: {ex}");
+    Console.WriteLine($"Oops: {ex.Message}");
 }
 

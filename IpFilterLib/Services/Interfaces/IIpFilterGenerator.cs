@@ -3,7 +3,7 @@
 namespace IpFilterLib.Services.Interfaces;
 public interface IIpFilterGenerator
 {
-    List<IpRange> FilterByCountry(List<IpRange> ipRanges, List<string> countryCodes);
+    public List<IpRange> FilterByCountry(List<IpRange> ipRanges, List<string> countryCodes);
 
-    void WriteIpFilteredFile(List<IpRange> ipRanges, string outputPath);
+    public void WriteIpFilteredFile(List<IpRange> ipRanges, string outputPath);
 }

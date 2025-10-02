@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# ip2location.com's database
+IpFilterLib/Databases/IP2LOCATION-LITE-DB1.CSV
+
 # User-specific files
 *.rsuser
 *.suo
@@ -361,6 +364,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-
-# ip2location.com's database
-IpFilterLib/Databases/IP2LOCATION-LITE-DB1.CSV
