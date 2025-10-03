@@ -10,10 +10,8 @@ jobs:
     strategy:
         matrix:
             include:
-              - os: ubuntu-latest
-                runtime: linux-x64
-              - os: macos-latest
-                runtime: osx-arm64
+              - os: windows-latest
+                runtime: win-x64
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -42,16 +40,13 @@ jobs:
           dotnet publish IpFilterConsole/IpFilterConsole.csproj \
             -c Release \
             -r ${{ matrix.runtime }} \
-            --sc true \
-            -p:Version=${{ env.VERSION }} \
             -o publish/${{ matrix.runtime }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ipfilter-${{ matrix.runtime }}
-          path: publish/${{ matrix.runtime }}      
-  
+          path: publish/${{ matrix.runtime }}
   release:
     needs: build
     runs-on: ubuntu-latest
