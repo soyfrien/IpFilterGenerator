@@ -1,5 +1,7 @@
-﻿[![Build 🡢 Publish 🡢 Release (Linux & macOS)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build.yml)
+﻿[![Build 🡢 Publish 🡢 Release (Linux)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux.yml)
+[![Build 🡢 Publish 🡢 Release (macOS)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml)
 [![Build 🡢 Publish 🡢 Release (Windows)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-windows.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-windows.yml)
+
 
 # IPFilterConsole
 Generates an ipfilter.dat file for chosen countries.
