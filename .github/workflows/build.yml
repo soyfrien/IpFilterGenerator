@@ -56,7 +56,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            publish/linux-x64/ipfilter-linux-x64.zip
-            publish/osx-arm64/ipfilter-osx-arm64.zip
+            publish/linux-x64/IpFilterConsole
+            publish/osx-arm64/IpFilterConsole
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
