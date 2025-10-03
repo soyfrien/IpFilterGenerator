@@ -1,4 +1,4 @@
-﻿name: Build 🡢 Publish 🡢 Release (Linux)
+﻿name: Build 🡢 Publish 🡢 Release (Linux Arm)
 
 permissions:
   contents: write
