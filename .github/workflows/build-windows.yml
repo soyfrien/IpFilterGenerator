@@ -42,10 +42,14 @@ jobs:
         run: |
           dotnet publish IpFilterConsole/IpFilterConsole.csproj -c Release -r win-x64 -o publish/win-x64
 
+      - name: Zip binaries
+        run: |          
+            zip -j IpFilterConsole-win-x64.zip publish/win-x64/IpFilterConsole.exe
+
       - name: Upload release assets
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            publish/win-x64/IpFilterConsole.exe
+            publish/win-x64/IpFilterConsole-win-x64.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
