@@ -57,6 +57,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            publish/${{ matrix.runtime }}/IpFilterConsole-${{ matrix.runtime }}.zip
+            IpFilterConsole-${{ matrix.runtime }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
