@@ -41,7 +41,7 @@ jobs:
             unzip db.zip -d IpFilterLib/Databases
 
       - name: Install compiler toolchain for Arm64
-        run: sudo apt install clang build-base zlib-dev -y
+        run: sudo apt install clang zlib1g-dev -y
 
       - name: Publish self-contained binary
         run: |
