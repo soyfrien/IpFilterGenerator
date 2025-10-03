@@ -8,7 +8,4 @@ public static class IpConverter
             (ipDecimalForm >> 8) & 0xFF,
             ipDecimalForm & 0xFF
         ]);
-
-    // TODO: IPv4ToDecimal
-    public static string IPv4ToDecimal(string ipv4) => string.Empty;
 }
