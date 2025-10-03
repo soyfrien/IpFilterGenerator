@@ -48,10 +48,7 @@ jobs:
             --sc true \
             -p:Version=${{ env.VERSION }} \
             -o publish/${{ matrix.runtime }}
-
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+            
       - name: Upload release assets
         uses: softprops/action-gh-release@v1
         with:
