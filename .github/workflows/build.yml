@@ -44,7 +44,7 @@ jobs:
           dotnet publish IpFilterConsole/IpFilterConsole.csproj \
             -c Release \
             -r ${{ matrix.runtime }} \
-            --self-contained true \
+            --sc true \
             -p:Version=${{ env.VERSION }} \
             -o publish/${{ matrix.runtime }}
 
