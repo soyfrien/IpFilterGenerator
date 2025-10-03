@@ -13,18 +13,6 @@ jobs:
     strategy:
         matrix:
             include:
-              - os: ubuntu-latest
-                runtime: linux-x64
-              - os: ubuntu-latest
-                runtime: linux-arm
-              - os: ubuntu-latest
-                runtime: linux-arm64
-              - os: ubuntu-latest
-                runtime: linux-arm
-              - os: ubuntu-latest
-                runtime: linux-musl-x64
-              - os: ubuntu-latest
-                runtime: linux-musl-arm64
               - os: macos-latest
                 runtime: osx-arm64 
               - os: macos-latest
