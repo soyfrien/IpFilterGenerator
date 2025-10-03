@@ -38,7 +38,10 @@ jobs:
             curl -L -o db.zip https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.CSV.ZIP
             unzip db.zip -d IpFilterLib/Databases
 
-      - name: Publish self-contained binary
+      - name: Strip PublishAot from .csproj file
+        run: sed -i.bak '/<PublishAot>True<\/PublishAot>/d' IpFilterConsole/IpFilterConsole.csproj
+
+      - name: Publish binary
         run: |
           dotnet publish IpFilterConsole/IpFilterConsole.csproj \
             -c Release \
