@@ -51,14 +51,12 @@ jobs:
 
       - name: Zip binaries
         run: |
-          zip -j IpFilterConsole-linux-x64.zip publish/linux-x64/IpFilterConsole
-          zip -j IpFilterConsole-osx-arm64.zip publish/osx-arm64/IpFilterConsole
+          zip -j IpFilterConsole-${{ matrix.runtime }}-.zip publish/${{ matrix.runtime }}/IpFilterConsole
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            publish/linux-x64/IpFilterConsole-linux-x64.zip
-            publish/osx-arm64/IpFilterConsole-osx-arm64.zip
+            publish/${{ matrix.runtime }}/IpFilterConsole-${{ matrix.runtime }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

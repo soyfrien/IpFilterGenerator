@@ -44,7 +44,7 @@ jobs:
 
       - name: Zip binaries
         run: |          
-            zip -j IpFilterConsole-win-x64.zip publish/win-x64/IpFilterConsole.exe
+            Compress-Archive -Path publish/win-x64/IpFilterConsole.exe -Destination-Path IpFilterConsole-win-x64.zip
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v1
