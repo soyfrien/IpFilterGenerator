@@ -1,4 +1,4 @@
-name: Build and Publish IPFilterGenerator
+name: Build and Publish (Linux & macOS)
 
 permissions:
   contents: write
@@ -67,7 +67,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            publish/linux-x64/ipfilter-linux-x64
-            publish/osx-arm64/ipfilter-osx-x64
+            publish/linux-x64/ipfilter-linux-x64.zip
+            publish/osx-arm64/ipfilter-osx-x64.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
