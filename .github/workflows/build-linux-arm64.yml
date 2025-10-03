@@ -13,9 +13,9 @@ jobs:
     strategy:
         matrix:
             include:
-              - os: ubuntu-latest
+              - os: alpine-latest
                 runtime: linux-arm64
-              - os: ubuntu-latest
+              - os: alpine-latest
                 runtime: linux-musl-arm64
     runs-on: ${{ matrix.os }}
 
@@ -41,7 +41,7 @@ jobs:
             unzip db.zip -d IpFilterLib/Databases
 
       - name: Install compiler toolchain for Arm64
-        run: sudo apt install clang zlib1g-dev -y
+        run: sudo apk add clang build-base zlib-dev -y
 
       - name: Publish self-contained binary
         run: |
