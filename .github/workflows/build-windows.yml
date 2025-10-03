@@ -59,6 +59,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            publish/win-x64/*
+            publish/win-x64/ipfilter-win-x64
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
