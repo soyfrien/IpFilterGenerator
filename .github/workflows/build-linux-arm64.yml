@@ -41,7 +41,7 @@ jobs:
             unzip db.zip -d IpFilterLib/Databases
 
       - name: Add .NET ILCompiler
-        run: sed -i '/<ItemGroup>/a \ <PackageReference Include="Microsoft.DotNet.ILCompiler; runtime.linux-x64.Microsoft.DotNet.ILCompiler" Version="7.0.0-alpha.1.21423.2" />' IpFilterConsole/IpFilterConsole.csproj
+        run: sed -i '/<ItemGroup>/a \ <PackageReference Include="Microsoft.DotNet.ILCompiler; runtime.linux-x64.Microsoft.DotNet.ILCompiler" Version="8.0.20" />' IpFilterConsole/IpFilterConsole.csproj
 
       - name: Publish self-contained binary
         run: |
