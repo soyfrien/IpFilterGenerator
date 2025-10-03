@@ -21,11 +21,12 @@ const string about = @"Required flag:
         ipfilterconsole --countries=IL,AR,PY
 
 Optional flags:
-    --load-from-filePath=[Path to updated CSV filePath from ip2location.com]
-        ipfilterconsole --countries=IL --load-from-filePath=~/Downloads/IP2LOCATION-LITE-DB1.CSV
+    --load-from-file=[Path to updated CSV file from ip2location.com]
+        ipfilterconsole --countries=IL --load-from-file=~/Downloads/IP2LOCATION-LITE-DB1.CSV
     --output=[Path to save generated ipfilter.dat]
-    --show-license
-";
+    --patch-clients (searches for support BitTorrent clients to apply filter to)
+    --patch-qbittorrent (will apply the filter qBittorrent)
+    --show-license";
 
 if (args.Length == 0)
 {

@@ -16,6 +16,8 @@ Optional flags:
     --load-from-file=[Path to updated CSV file from ip2location.com]
         ipfilterconsole --countries=IL --load-from-file=~/Downloads/IP2LOCATION-LITE-DB1.CSV
     --output=[Path to save generated ipfilter.dat]
+    --patch-clients (searches for support BitTorrent clients to apply filter to)
+    --patch-qbittorrent (will apply the filter qBittorrent)
     --show-license
 ```
 
