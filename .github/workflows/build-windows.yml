@@ -37,9 +37,9 @@ jobs:
 
       - name: Publish self-contained binary
         run: |
-          dotnet publish IpFilterConsole/IpFilterConsole.csproj \
-            -c Release \
-            -r ${{ matrix.runtime }} \
+          dotnet publish IpFilterConsole/IpFilterConsole.csproj `
+            -c Release `
+            -r ${{ matrix.runtime }} `
             -o publish/${{ matrix.runtime }}
 
       - name: Upload artifact
