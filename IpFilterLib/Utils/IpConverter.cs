@@ -1,7 +1,7 @@
 ﻿namespace IpFilterLib.Utils;
 public static class IpConverter
 {
-    public static string DecimalToIPv4(uint ipDecimalForm) => string.Join('.',
+    public static string DecimalToIPv4(uint ipDecimalForm) => string.Join<uint>('.',
         [
             (ipDecimalForm >> 24) & 0xFF,
             (ipDecimalForm >> 16) & 0xFF,
