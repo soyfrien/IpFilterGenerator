@@ -42,16 +42,6 @@ jobs:
         run: |
           dotnet publish IpFilterConsole/IpFilterConsole.csproj -c Release -r win-x64 -o publish/win-x64
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ipfilter-win-x64
-          path: publish/win-x64
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Checkout code
         uses: actions/checkout@v4
 

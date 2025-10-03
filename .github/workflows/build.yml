@@ -49,17 +49,6 @@ jobs:
             -p:Version=${{ env.VERSION }} \
             -o publish/${{ matrix.runtime }}
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ipfilter-${{ matrix.runtime }}
-          path: publish/${{ matrix.runtime }}      
-  
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -68,6 +57,6 @@ jobs:
         with:
           files: |
             publish/linux-x64/ipfilter-linux-x64.zip
-            publish/osx-arm64/ipfilter-osx-x64.zip
+            publish/osx-arm64/ipfilter-osx-arm64.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
