@@ -14,9 +14,11 @@ jobs:
         matrix:
             include:
               - os: ubuntu-latest
-                runtime: linux-x64
+                runtime: linux-arm
               - os: ubuntu-latest
-                runtime: linux-musl-x64
+                runtime: linux-arm64
+              - os: ubuntu-latest
+                runtime: linux-musl-arm64
     runs-on: ${{ matrix.os }}
 
     steps:
