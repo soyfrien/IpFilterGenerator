@@ -1,11 +1,15 @@
 ﻿using IpFilterLib.Models;
 using IpFilterLib.Services;
+using IpFilterLib.Services.Interfaces;
 
 #region Process args
 string? countriesArg = args.FirstOrDefault((string a) => a.StartsWith("--countries="));
 string? loadFromFileArg = args.FirstOrDefault((string a) => a.StartsWith("--load-from-filePath"));
 string? outputArg = args.FirstOrDefault((string a) => a.StartsWith("--outputArg="));
 string? showLicenseArg = args.FirstOrDefault((string a) => a.StartsWith("--show-license"));
+string? patchClientsArg = args.FirstOrDefault((string a) => a.StartsWith("--patch-clients"));
+//TODO: patchQbittorrentArg
+string? patchQbittorrentArg = args.FirstOrDefault((string a) => a.StartsWith("--patch-qbittorrent"));
 const string ip2LocationLicense = @"IPFilterLib uses the IP2Location LITE database for IP geolocation.
 © IP2Location.com. All rights reserved.
 Users must register at https://lite.ip2location.com to download updates.
@@ -24,7 +28,8 @@ Optional flags:
 
 if (args.Length == 0)
 {
-    Console.WriteLine(about);
+    Console.WriteLine($"{about}\n");
+    Console.WriteLine(ip2LocationLicense);
     return;
 }
 
@@ -45,6 +50,9 @@ else
     string filePath = loadFromFileArg.Split('=')[1];
     allRanges = (new IpDatabaseLoader()).LoadFromCsv(filePath);
 }
+
+if(!string.IsNullOrEmpty(patchClientsArg))
+    PatchClients();
 #endregion
 
 IpFilterGenerator ipFilterGenerator = new();
@@ -61,3 +69,18 @@ catch (Exception ex)
     Console.WriteLine($"Oops: {ex.Message}");
 }
 
+
+static void PatchClients()
+{
+    List<IPatchClient> clients = [ new QBittorrentPatchClient() ];
+
+    foreach (IPatchClient client in clients)
+    {
+        if (client.SettingsExist())
+        {
+            Console.WriteLine($"Patching {client.Name}...");
+            if (client.TryPatchSettings("ipfilter.dat"))
+                Console.WriteLine("OK.");
+        }
+    }
+}
