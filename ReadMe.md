@@ -1,3 +1,5 @@
+[![Build and Publish IPFilterGenerator](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build.yml)
+
 # IPFilterConsole
 Generates an ipfilter.dat file for chosen countries.
 
