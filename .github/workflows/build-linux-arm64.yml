@@ -1,4 +1,4 @@
-﻿name: Build 🡢 Publish 🡢 Release (Linux Arm)
+﻿name: Build 🡢 Publish 🡢 Release (Linux Arm64)
 
 permissions:
   contents: write
@@ -14,7 +14,9 @@ jobs:
         matrix:
             include:
               - os: ubuntu-latest
-                runtime: linux-arm
+                runtime: linux-arm64
+              - os: ubuntu-latest
+                runtime: linux-musl-arm64
     runs-on: ${{ matrix.os }}
 
     steps:
