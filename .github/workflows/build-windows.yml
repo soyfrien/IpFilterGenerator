@@ -1,4 +1,4 @@
-name: Build and Publish (Windows)
+﻿name: Build 🡢 Publish 🡢 Release (Windows)
 
 permissions:
   contents: write

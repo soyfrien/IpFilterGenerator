@@ -1,4 +1,4 @@
-name: Build and Publish (Linux & macOS)
+﻿name: Build 🡢 Publish 🡢 Release (Linux & macOS)
 
 permissions:
   contents: write
