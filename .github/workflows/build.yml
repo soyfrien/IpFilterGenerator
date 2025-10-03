@@ -8,9 +8,14 @@ on:
 jobs:
   build:
     strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
-        runtime: [win-x64, linux-x64, osx-arm64]
+        matrix:
+            include:
+              - os: windows-latest
+                runtime: win-x64
+              - os: ubuntu-latest
+                runtime: linux-x64
+              - os: macos-latest
+                runtime: osx-arm64
     runs-on: ${{ matrix.os }}
 
     steps:
