@@ -44,7 +44,7 @@ jobs:
         run: sed -i '/<ItemGroup>/a \ <PackageReference Include="Microsoft.DotNet.ILCompiler; runtime.linux-x64.Microsoft.DotNet.ILCompiler" Version="8.0.20" />' IpFilterConsole/IpFilterConsole.csproj
       
       - name: Install Common ARM64 Dev Libraries
-        run: sudo apt install binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libc6-dev-arm64-cross zlib1g-dev-arm64-cross libc6-dev-arm64-cross libgcc-12-dev-arm64-cross zlib1g-dev-arm64-cross libstdc++-12-dev-arm64-cross -y
+        run: sudo apt install binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libc6-dev-arm64-cross zlib1g-dev libc6-dev-arm64-cross libgcc-12-dev-arm64-cross libstdc++-12-dev-arm64-cross -y
 
       - name: Force correct linker
         run: echo "LD=/usr/bin/aarch64-linux-gnu-ld" >> $GITHUB_ENV; echo "CC=aarch64-linux-gnu-gcc" >> $GITHUB_ENV; echo "CXX=aarch64-linux-gnu-g++" >> $GITHUB_ENV 
