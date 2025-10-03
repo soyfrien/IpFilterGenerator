@@ -13,9 +13,9 @@ jobs:
     strategy:
         matrix:
             include:
-              - os: alpine-latest
+              - os: ubuntu-latest
                 runtime: linux-arm64
-              - os: alpine-latest
+              - os: ubtuntu-latest
                 runtime: linux-musl-arm64
     runs-on: ${{ matrix.os }}
 
@@ -40,14 +40,15 @@ jobs:
             curl -L -o db.zip https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.CSV.ZIP
             unzip db.zip -d IpFilterLib/Databases
 
-      - name: Install compiler toolchain for Arm64
-        run: sudo apk add clang build-base zlib-dev -y
+      - name: Add .NET ILCompiler
+        run: sed -i '/<ItemGroup>/a \ <PackageReference Include="Microsoft.DotNet.ILCompiler; runtime.linux-x64.Microsoft.DotNet.ILCompiler" Version="7.0.0-alpha.1.21423.2" />' IpFilterConsole/IpFilterConsole.csproj
 
       - name: Publish self-contained binary
         run: |
           dotnet publish IpFilterConsole/IpFilterConsole.csproj \
             -c Release \
             -r ${{ matrix.runtime }} \
+            --self-contained true \
             -p:Version=${{ env.VERSION }} \
             -o publish/${{ matrix.runtime }}
 
