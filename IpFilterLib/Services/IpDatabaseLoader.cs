@@ -2,6 +2,7 @@
 using IpFilterLib.Services.Interfaces;
 
 namespace IpFilterLib.Services;
+
 public class IpDatabaseLoader : IIpDatabaseLoader
 {
     public List<IpRange> LoadFromCsv(string path)
@@ -55,12 +56,5 @@ public class IpDatabaseLoader : IIpDatabaseLoader
         }
 
         return ipRanges;
-    }
-
-    public Stream GetEmbeddedCsvStream(string resourceName)
-    {
-        var assembly = typeof(IpDatabaseLoader).Assembly;
-        return assembly.GetManifestResourceStream(resourceName)
-            ?? throw new FileNotFoundException($"Resource '{resourceName}' not found.");
     }
 }

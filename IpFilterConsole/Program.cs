@@ -1,6 +1,7 @@
 ﻿using IpFilterLib.Models;
 using IpFilterLib.Services;
 using IpFilterLib.Services.Interfaces;
+using IpFilterLib.Utils;
 
 #region Process args
 string? countriesArg = args.FirstOrDefault((string a) => a.StartsWith("--countries="));
@@ -42,7 +43,7 @@ if (!string.IsNullOrEmpty(showLicenseArg))
 List<IpRange> allRanges = new List<IpRange>();
 if (string.IsNullOrEmpty(loadFromFileArg))
 {
-    using Stream? stream = (new IpDatabaseLoader()).GetEmbeddedCsvStream(@"IpFilterLib.Databases.IP2LOCATION-LITE-DB1.CSV");
+    using Stream? stream = EmbeddedResourceHelper.GetEmbeddedCsvStream(@"IpFilterLib.Databases.IP2LOCATION-LITE-DB1.CSV");
     allRanges = (new IpDatabaseLoader()).LoadFromStream(stream);
 }
 else

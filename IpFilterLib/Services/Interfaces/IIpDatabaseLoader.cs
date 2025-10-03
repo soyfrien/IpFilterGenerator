@@ -5,6 +5,4 @@ public interface IIpDatabaseLoader
     public List<IpRange> LoadFromCsv(string path);
 
     public List<IpRange> LoadFromStream(Stream stream);
-
-    public Stream GetEmbeddedCsvStream(string resourceName);
 }
