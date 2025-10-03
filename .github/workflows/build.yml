@@ -51,7 +51,7 @@ jobs:
 
       - name: Zip binaries
         run: |
-          zip -j IpFilterConsole-${{ matrix.runtime }}-.zip publish/${{ matrix.runtime }}/IpFilterConsole
+          zip -j IpFilterConsole-${{ matrix.runtime }}.zip publish/${{ matrix.runtime }}/IpFilterConsole
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v1
