@@ -41,16 +41,13 @@ jobs:
             unzip db.zip -d IpFilterLib/Databases
 
       - name: Add .NET ILCompiler
-        run: sed -i '/<ItemGroup>/a \ <PackageReference Include="Microsoft.DotNet.ILCompiler; runtime.linux-x64.Microsoft.DotNet.ILCompiler" Version="8.0.20" />' IpFilterConsole/IpFilterConsole.csproj
+        run: sed -i '/<ItemGroup>/a \ <PackageReference Include="Microsoft.DotNet.ILCompiler; runtime.linux-arm64.Microsoft.DotNet.ILCompiler" Version="8.0.20" />' IpFilterConsole/IpFilterConsole.csproj
       
       - name: Install Common ARM64 Dev Libraries
         run: sudo apt install binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libc6-dev-arm64-cross zlib1g-dev libc6-dev-arm64-cross libgcc-12-dev-arm64-cross libstdc++-12-dev-arm64-cross -y
 
       - name: Force correct linker
-        run: echo "LD=/usr/bin/aarch64-linux-gnu-ld" >> $GITHUB_ENV; echo "CC=aarch64-linux-gnu-gcc" >> $GITHUB_ENV; echo "CXX=aarch64-linux-gnu-g++" >> $GITHUB_ENV; echo "SYSROOT=$(pwd)/arm64-rootfs" >> $GITHUB_ENV
-
-      - name: Install minimal rootfs
-        run: wget http://cdimage.ubuntu.com/ubuntu-base/releases/25.04/release/ubuntu-base-25.04-base-arm64.tar.gz; mkdir arm64-rootfs; tar -xzf ubuntu-base-25.04-base-arm64.tar.gz -C arm64-rootfs
+        run: echo "LD=/usr/bin/aarch64-linux-gnu-ld" >> $GITHUB_ENV; echo "CC=aarch64-linux-gnu-gcc" >> $GITHUB_ENV; echo "CXX=aarch64-linux-gnu-g++" >> $GITHUB_ENV;"
 
       - name: Publish self-contained binary
         run: |
