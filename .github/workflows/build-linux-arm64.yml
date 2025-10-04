@@ -47,7 +47,7 @@ jobs:
         run: sudo apt install binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libc6-dev-arm64-cross zlib1g-dev libc6-dev-arm64-cross libgcc-12-dev-arm64-cross libstdc++-12-dev-arm64-cross -y
 
       - name: Force correct linker
-        run: echo "LD=/usr/bin/aarch64-linux-gnu-ld" >> $GITHUB_ENV; echo "CC=aarch64-linux-gnu-gcc" >> $GITHUB_ENV; echo "CXX=aarch64-linux-gnu-g++" >> $GITHUB_ENV;"
+        run: echo "LD=/usr/bin/aarch64-linux-gnu-ld" >> $GITHUB_ENV; echo "CC=aarch64-linux-gnu-gcc" >> $GITHUB_ENV; echo "CXX=aarch64-linux-gnu-g++" >> $GITHUB_ENV;
 
       - name: Publish self-contained binary
         run: |
