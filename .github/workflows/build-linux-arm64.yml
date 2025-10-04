@@ -45,7 +45,7 @@ jobs:
 
       - name: Add cross-compile support
         run: |
-            sudo dpkg --add-architecture arm64
+            sudo dpkg --add-architecture arm64 2> /dev/null 
             sudo bash -c 'cat > /etc/apt/sources.list.d/arm64.list <<EOF
             deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ noble main restricted
             deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ noble-updates main restricted
