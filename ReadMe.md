@@ -29,5 +29,4 @@ Optional flags:
 # IpFilterLib
 ## Building
  - [Download](https://lite.ip2location.com/ip2location-lite#database) and add ```IP2LOCATION-LITE-DB1.CSV``` to the **Databases** folder.
- - Mark it as an **Embedded resource**.
  - ```dotnet publish```
