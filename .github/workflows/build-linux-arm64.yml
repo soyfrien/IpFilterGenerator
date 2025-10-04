@@ -51,12 +51,12 @@ jobs:
 
       - name: Manually install z
         run: |
-            wget https://github.com/madler/zlib/releases/download/v1.3.1/zlib131.zip \
-            unzip zlib131.zip \
-            sudo apt install build-essential gcc -y \
-            cd zlib-1.3.1 \
-            ./configure --prefix=/usr/local/zlib \
-            make \
+            wget https://github.com/madler/zlib/releases/download/v1.3.1/zlib131.zip
+            unzip zlib131.zip
+            sudo apt install build-essential gcc -y
+            cd zlib-1.3.1
+            ./configure --prefix=/usr/local/zlib
+            make
             sudo make install
 
       - name: Publish self-contained binary
