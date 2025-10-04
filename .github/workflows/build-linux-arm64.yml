@@ -45,6 +45,8 @@ jobs:
 
       - name: Add cross-compile support
         run: |
+            sudo apt update -qq
+            sudo apt install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libc6-dev-arm64-cross
             sudo dpkg --add-architecture arm64
             sudo apt update -qq || true
             sudo bash -c 'cat > /etc/apt/sources.list.d/arm64.list <<EOF
