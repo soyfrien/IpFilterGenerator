@@ -50,7 +50,7 @@ jobs:
         run: echo "LD=/usr/bin/aarch64-linux-gnu-ld" >> $GITHUB_ENV; echo "CC=aarch64-linux-gnu-gcc" >> $GITHUB_ENV; echo "CXX=aarch64-linux-gnu-g++" >> $GITHUB_ENV; echo "SYSROOT=$(pwd)/arm64-rootfs" >> $GITHUB_ENV
 
       - name: Install minimal rootfs
-        run: wget http://cdimage.ubuntu.com/ubuntu-base/releases/22.04/release/ubuntu-base-22.04-base-arm64.tar.gz; mkdir arm64-rootfs; tar -xzf ubuntu-base-22.04-base-arm64.tar.gz -C arm64-rootfs
+        run: wget http://cdimage.ubuntu.com/ubuntu-base/releases/25.04/release/ubuntu-base-25.04-base-arm64.tar.gz; mkdir arm64-rootfs; tar -xzf ubuntu-base-25.04-base-arm64.tar.gz -C arm64-rootfs
 
       - name: Publish self-contained binary
         run: |
