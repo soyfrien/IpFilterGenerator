@@ -53,7 +53,7 @@ else
     allRanges = (new IpDatabaseLoader()).LoadFromCsv(filePath);
 }
 
-if(!string.IsNullOrEmpty(patchClientsArg))
+if(!string.IsNullOrEmpty(patchClientsArg) || !string.IsNullOrEmpty(patchQbittorrentArg))
     PatchClients();
 #endregion
 
