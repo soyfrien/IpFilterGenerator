@@ -15,7 +15,7 @@ jobs:
             include:
               - os: ubuntu-latest
                 runtime: linux-arm64
-              - os: ubtuntu-latest
+              - os: ubuntu-latest
                 runtime: linux-musl-arm64
     runs-on: ${{ matrix.os }}
 
