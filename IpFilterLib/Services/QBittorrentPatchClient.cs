@@ -4,7 +4,7 @@ namespace IpFilterLib.Services;
 public class QBittorrentPatchClient : IPatchClient
 {
     private string _iniPath = string.Empty;
-    readonly string[] _linuxPaths = [
+    private readonly string[] _linuxPaths = [
         ".config/qBittorrent/",
         ".var/app/org.qbittorrent.qBittorrent/config/qBittorrent/",
         "snap/qbittorrent-arnatious/current/.config/qBittorrent/" ];
@@ -45,16 +45,26 @@ public class QBittorrentPatchClient : IPatchClient
         return File.Exists(_iniPath); 
     }
 
+
     public bool TryPatchSettings(string ipFilterPath)
     {
         if (OperatingSystem.IsLinux())
         {
-            string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            // Respect XDG Base Directory Specification (https://specifications.freedesktop.org/basedir-spec/latest/)
+            string? xdgConfigHome = Environment.GetEnvironmentVariable("XDG_CONFIG_HOME");
+            string? userProfile = !string.IsNullOrEmpty(xdgConfigHome)
+                ? xdgConfigHome 
+                : Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+
             foreach (string path in _linuxPaths)
                 if (File.Exists(Path.Combine(userProfile, path, $"{Name}", $"{Name}.ini")))
-                    try { PatchSettings(ipFilterPath); }
-                    catch (Exception ex) { Console.WriteLine(ex.Message); }
-        } 
+                    try
+                    {
+                        ApplyPatch(ipFilterPath);
+                        BackupSettings(ipFilterPath);
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+        }
         else if (OperatingSystem.IsMacOS())
             _iniPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
                                     ".config",
@@ -66,13 +76,17 @@ public class QBittorrentPatchClient : IPatchClient
                                     $"{Name}.ini");
 
         if (OperatingSystem.IsMacOS() || OperatingSystem.IsWindows())
-            try { PatchSettings(ipFilterPath); }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            try 
+            {
+                ApplyPatch(ipFilterPath); 
+                BackupSettings(ipFilterPath);
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 
         return true;
     }
 
-    public void PatchSettings(string ipFilterPath)
+    private void ApplyPatch(string ipFilterPath)
     {
         List<string>? lines = File.ReadAllLines(_iniPath).ToList();
         int sectionIndex = lines.FindIndex(line => line.Trim() == "[BitTorrent]");
@@ -86,4 +100,7 @@ public class QBittorrentPatchClient : IPatchClient
 
         File.WriteAllLines(_iniPath, lines);
     }
+
+    private void BackupSettings(string ipFilterPath) =>
+        File.Copy(ipFilterPath, $"{ipFilterPath}-{DateTime.Now}.bak");
 }

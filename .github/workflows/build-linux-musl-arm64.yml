@@ -56,15 +56,12 @@ jobs:
             sudo sed -i -e 's/deb mirror/deb [arch=amd64] mirror/g' /etc/apt/sources.list
             sudo apt update -qq || true
             sudo apt install -y clang llvm binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu zlib1g-dev:arm64
-      
-      - name: Force correct linker
-        run: |
-            echo "LD=/usr/bin/aarch64-linux-gnu-ld" >> $GITHUB_ENV
-            echo "CC=aarch64-linux-gnu-gcc" >> $GITHUB_ENV
-            echo "CXX=aarch64-linux-gnu-g++" >> $GITHUB_ENV 
 
-      - name: Publish self-contained binary
+      - name: Publish self-contained binary (custom linker)
         run: |
+          export LD=ld.lld
+          export CC=aarch64-linux-gnu-gcc
+          export CXX=aarch64-linux-gnu-g++
           dotnet publish IpFilterConsole/IpFilterConsole.csproj \
             -c Release \
             -r ${{ matrix.runtime }} \
