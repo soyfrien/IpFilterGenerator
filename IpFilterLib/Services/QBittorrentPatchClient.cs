@@ -102,5 +102,5 @@ public class QBittorrentPatchClient : IPatchClient
     }
 
     private void BackupSettings(string ipFilterPath) =>
-        File.Copy(ipFilterPath, $"{ipFilterPath}-{DateTime.Now}.bak");
+        File.Copy(ipFilterPath, $"{ipFilterPath}-{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.bak");
 }
