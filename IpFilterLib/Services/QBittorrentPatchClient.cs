@@ -60,8 +60,8 @@ public class QBittorrentPatchClient : IPatchClient
                 if (File.Exists(Path.Combine(userProfile, path, $"{Name}", $"{Name}.ini")))
                     try
                     {
-                        ApplyPatch(ipFilterPath);
                         BackupSettings(ipFilterPath);
+                        ApplyPatch(ipFilterPath);
                     }
                     catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
         }
@@ -78,8 +78,8 @@ public class QBittorrentPatchClient : IPatchClient
         if (OperatingSystem.IsMacOS() || OperatingSystem.IsWindows())
             try 
             {
-                ApplyPatch(ipFilterPath); 
                 BackupSettings(ipFilterPath);
+                ApplyPatch(ipFilterPath); 
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 
