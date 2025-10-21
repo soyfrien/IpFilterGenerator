@@ -7,9 +7,9 @@ public class IpDatabaseLoader : IIpDatabaseLoader
 {
     public List<IpRange> LoadFromCsv(string path)
     {
-        List<string> list = (from line in File.ReadAllLines(path).Skip(1)
+        List<string> list = [.. (from line in File.ReadAllLines(path).Skip(1)
                              where !string.IsNullOrWhiteSpace(line)
-                             select line).ToList();
+                             select line)];
         List<IpRange> ipRanges = [];
 
         foreach (string item in list)

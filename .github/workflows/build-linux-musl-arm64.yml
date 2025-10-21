@@ -39,7 +39,10 @@ jobs:
             unzip db.zip -d IpFilterLib/Databases
 
       - name: Add .NET ILCompiler
-        run: sed -i '/<ItemGroup>/a \ <PackageReference Include="Microsoft.DotNet.ILCompiler; runtime.linux-arm64.Microsoft.DotNet.ILCompiler" Version="8.0.20" />' IpFilterConsole/IpFilterConsole.csproj
+        run: sed -i '/<ItemGroup>/a \ <PackageReference Include="Microsoft.DotNet.ILCompiler; runtime.linux-arm64.Microsoft.DotNet.ILCompiler" />' IpFilterConsole/IpFilterConsole.csproj
+
+      - name: Strip PublishAoT
+        run: sed -i '/<PublishAot>True<\/PublishAot>/d' IpFilterConsole/IpFilterConsole.csproj
 
       - name: Add cross-compile support
         run: |
