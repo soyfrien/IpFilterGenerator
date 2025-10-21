@@ -60,8 +60,8 @@ public class QBittorrentPatchClient : IPatchClient
                 if (File.Exists(Path.Combine(userProfile, path, $"{Name}", $"{Name}.ini")))
                     try
                     {
-                        BackupSettings(ipFilterPath);
-                        ApplyPatch(ipFilterPath);
+                        BackupSettings(_iniPath);
+                        ApplyPatch(_iniPath);
                     }
                     catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
         }
@@ -78,15 +78,15 @@ public class QBittorrentPatchClient : IPatchClient
         if (OperatingSystem.IsMacOS() || OperatingSystem.IsWindows())
             try 
             {
-                BackupSettings(ipFilterPath);
-                ApplyPatch(ipFilterPath); 
+                BackupSettings(_iniPath);
+                ApplyPatch(_iniPath); 
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 
         return true;
     }
 
-    private void ApplyPatch(string ipFilterPath)
+    private void ApplyPatch(string _iniPath)
     {
         List<string>? lines = File.ReadAllLines(_iniPath).ToList();
         int sectionIndex = lines.FindIndex(line => line.Trim() == "[BitTorrent]");
@@ -96,11 +96,11 @@ public class QBittorrentPatchClient : IPatchClient
         lines.RemoveAll(line => line.StartsWith(@"IPFilter\"));
         lines.RemoveAll(line => line.StartsWith(@"Session\IPFilter"));
         lines.Insert(sectionIndex + 1, @"Session\IPFilteringEnabled=true");
-        lines.Insert(sectionIndex + 2, $"Session\\IPFilter={Path.GetFullPath(ipFilterPath).Replace(@"\", @"\\")}");
+        lines.Insert(sectionIndex + 2, $"Session\\IPFilter={Path.GetFullPath(_iniPath).Replace(@"\", @"\\")}");
 
         File.WriteAllLines(_iniPath, lines);
     }
 
-    private void BackupSettings(string ipFilterPath) =>
-        File.Copy(ipFilterPath, $"{ipFilterPath}-{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.bak");
+    private void BackupSettings(string _iniPath) =>
+        File.Copy(_iniPath, $"{_iniPath}-{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.bak");
 }
