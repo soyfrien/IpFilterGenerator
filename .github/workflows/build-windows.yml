@@ -65,7 +65,7 @@ jobs:
             files: ./IpFilterConsole-${{ matrix.runtime }}.zip
 
       - name: Pull latest
-        run: git pull
+        run: git pull origin main
 
       - name: Update README
         run: |
