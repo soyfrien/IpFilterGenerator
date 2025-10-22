@@ -72,4 +72,12 @@ jobs:
         run: |
             VT_LINK="${{ steps.vt_mac.outputs.permalink }}"
             DL_LINK="https://github.com/soyfrien/IpFilterGenerator/releases/download/v${{ env.VERSION }}/IpFilterConsole-${{ matrix.runtime }}.zip"
-            sed -i "/build-mac.yml).*|.*|/c\\| [![Build 🡢 Publish 🡢 Release (Linux)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml) | [Scan Result](${VT_LINK}) | [Download](${DL_LINK}) |" README.md
+            sed -i '' "/build-mac.yml).*|.*|/c\\| [![Build 🡢 Publish 🡢 Release (Linux)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml) | [Scan Result](${VT_LINK}) | [Download](${DL_LINK}) |" README.md
+
+      - name: Commit README update
+        run: |
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+            git add README.md
+            git commit -m "Update VirusTotal badge"
+            git push
