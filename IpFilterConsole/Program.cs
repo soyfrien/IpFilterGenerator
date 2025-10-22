@@ -24,7 +24,7 @@ Optional flags:
     --load-from-file=[Path to updated CSV file from ip2location.com]
         ipfilterconsole --countries=IL --load-from-file=~/Downloads/IP2LOCATION-LITE-DB1.CSV
     --output=[Path to save generated ipfilter.dat]
-    --patch-clients (searches for support BitTorrent clients to apply filter to)
+    --patch-clients (searches for support BitTorrent clients [qBittorrent] to apply filter to.)
     --patch-qbittorrent (will apply the filter qBittorrent)
     --show-license";
 
@@ -58,9 +58,7 @@ if(!string.IsNullOrEmpty(patchClientsArg) || !string.IsNullOrEmpty(patchQbittorr
 #endregion
 
 IpFilterGenerator ipFilterGenerator = new();
-List<IpRange> filtered = ipFilterGenerator.FilterByCountry(allRanges, countriesArg.Split('=')[1]
-                                                                                                     .Split(',')
-                                                                                                     .ToList());
+List<IpRange> filtered = ipFilterGenerator.FilterByCountry(allRanges, [.. countriesArg.Split('=')[1].Split(',')]);
 try
 {
     ipFilterGenerator.WriteIpFilteredFile(filtered, "ipfilter.dat");
