@@ -1,4 +1,6 @@
-﻿[![Build 🡢 Publish 🡢 Release (Linux)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux.yml)
+| Build Status | VirusTotal Report | Download |
+|--------------|-------------------|----------|
+[![Build 🡢 Publish 🡢 Release (Linux)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux.yml)
 [![Build 🡢 Publish 🡢 Release (Linux Arm)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-arm.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-arm.yml)
 [![Build 🡢 Publish 🡢 Release (Linux Arm64)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-arm64.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-arm64.yml)
 [![Build 🡢 Publish 🡢 Release (Linux musl Arm64)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-musl-arm64.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-musl-arm64.yml)
