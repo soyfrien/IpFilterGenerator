@@ -72,7 +72,7 @@ jobs:
             files: ./IpFilterConsole-${{ matrix.runtime }}.zip
 
       - name: Restore csproj to main state
-        run: sed -i '/<\/PropertyGroup>/i <PublishAot>True</PublishAot>' IpFilterConsole/IpFilterConsole.csproj
+        run: mv IpFilterConsole/IpFilterConsole.csproj.bak IpFilterConsole/IpFilterConsole.csproj
 
       - name: Pull latest
         run: git pull origin main
