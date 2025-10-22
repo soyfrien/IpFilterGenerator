@@ -42,7 +42,7 @@ jobs:
             unzip db.zip -d IpFilterLib/Databases
 
       - name: Add .NET ILCompiler
-        run: sed -i '/<ItemGroup>/a \ <PackageReference Include="Microsoft.DotNet.ILCompiler; runtime.linux-arm64.Microsoft.DotNet.ILCompiler" Version="8.0.20" />' IpFilterConsole/IpFilterConsole.csproj
+        run: sed -i '/<ItemGroup>/d \ <PackageReference Include="Microsoft.DotNet.ILCompiler; runtime.linux-arm64.Microsoft.DotNet.ILCompiler" Version="8.0.20" />' IpFilterConsole/IpFilterConsole.csproj
 
       - name: Add cross-compile support
         run: |
@@ -85,6 +85,9 @@ jobs:
         with:
             vt_api_key: ${{ secrets.VT_API_KEY }}
             files: ./IpFilterConsole-${{ matrix.runtime }}.zip
+      
+      - name: Restore csproj to main state
+        run: sed -i '/<PackageReference Include="Microsoft\.DotNet\.ILCompiler; runtime\.linux-arm64\.Microsoft\.DotNet\.ILCompiler" Version="8\.0\.20" \/>/d' IpFilterConsole/IpFilterConsole.csproj
 
       - name: Pull latest
         run: git pull origin main

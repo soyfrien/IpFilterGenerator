@@ -91,6 +91,11 @@ jobs:
         with:
             vt_api_key: ${{ secrets.VT_API_KEY }}
             files: ./IpFilterConsole-${{ matrix.runtime }}.zip
+            
+      - name: Restore csproj to main state
+        run: |
+            sed -i '/<\/PropertyGroup>/i <PublishAot>True</PublishAot>' IpFilterConsole/IpFilterConsole.csproj
+            sed -i '/<PackageReference Include="Microsoft\.DotNet\.ILCompiler; runtime\.linux-arm64\.Microsoft\.DotNet\.ILCompiler" Version="8\.0\.20" \/>/d' IpFilterConsole/IpFilterConsole.csproj
 
       - name: Pull latest
         run: git pull origin main
