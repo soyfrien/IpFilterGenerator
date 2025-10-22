@@ -92,6 +92,9 @@ jobs:
             vt_api_key: ${{ secrets.VT_API_KEY }}
             files: ./IpFilterConsole-${{ matrix.runtime }}.zip
 
+      - name: Pull latest
+        run: git pull
+
       - name: Update README
         run: |
             VT_LINK="${{ steps.vt_linux-musl-arm64.outputs.permalink }}"
