@@ -53,3 +53,22 @@ jobs:
             ./IpFilterConsole-win-x64.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: VirusTotal Scan
+        id: vt_windows
+        uses: crazy-max/ghaction-virustotal@v4
+        with:
+            vt_api_key: ${{ secrets.VT_API_KEY }}
+            files: ./IpFilterConsole-${{ matrix.runtime }}.zip
+
+      - name: Get release asset URL
+        id: asset_windows
+        run: |
+            asset_url=$(gh release view ${{ github.ref_name }} --json assets -q '.assets[] | select(.name == "./IpFilterConsole-${{ matrix.runtime }}.zip) | .url')
+            echo "asset_url=$asset_url" >> $GITHUB_OUTPUT
+
+      - name: Update README
+        run: |
+            VT_LINK="${{ steps.vt_windows.outputs.permalink }}"
+            DL_LINK="${{ steps.asset_windows.outputs.asset_url }}"
+            sed -i "/build-windows.yml\).*\|.*\|/c\\| [![Build 🡢 Publish 🡢 Release (Windows)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-windows.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-windows.yml) | [Scan Result](${VT_LINK}) | [Download](${DL_LINK}) |" README.md
