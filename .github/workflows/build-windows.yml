@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+            ref: ${{ github.ref_name }}
+            fetch-depth: 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -63,8 +66,8 @@ jobs:
 
       - name: Update README
         run: |
-            VT_LINK="${{ steps.vt_windows.outputs.permalink }}"
-            DL_LINK="https://github.com/soyfrien/IpFilterGenerator/releases/download/v${{ env.VERSION }}/IpFilterConsole-${{ matrix.runtime }}.zip"
+            $VT_LINK="${{ steps.vt_windows.outputs.permalink }}"
+            $DL_LINK="https://github.com/soyfrien/IpFilterGenerator/releases/download/v${{ env.VERSION }}/IpFilterConsole-${{ matrix.runtime }}.zip"
             sed -i "/build-windows.yml).*|.*|/c\\| [![Build 🡢 Publish 🡢 Release (Windows)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-windows.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-windows.yml) | [Scan Result](${VT_LINK}) | [Download](${DL_LINK}) |" README.md
                   
       - name: Commit README update
