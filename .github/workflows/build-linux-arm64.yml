@@ -83,14 +83,8 @@ jobs:
             vt_api_key: ${{ secrets.VT_API_KEY }}
             files: ./IpFilterConsole-${{ matrix.runtime }}.zip
 
-      - name: Get release asset URL
-        id: asset_linux-arm64
-        run: |
-            asset_url=$(gh release view ${{ github.ref_name }} --json assets -q '.assets[] | select(.name == "./IpFilterConsole-${{ matrix.runtime }}.zip) | .url')
-            echo "asset_url=$asset_url" >> $GITHUB_OUTPUT
-
       - name: Update README
         run: |
             VT_LINK="${{ steps.vt_linux-arm64.outputs.permalink }}"
-            DL_LINK="${{ steps.asset_linux-arm64.outputs.asset_url }}"
+            DL_LINK="https://github.com/soyfrien/IpFilterGenerator/releases/download/v${{ env.VERSION }}/IpFilterConsole-${{ matrix.runtime }}.zip"
             sed -i "/build-linux-arm64.yml\).*\|.*\|/c\\| [![Build 🡢 Publish 🡢 Release (Linux)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-arm64.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-arm64.yml) | [Scan Result](${VT_LINK}) | [Download](${DL_LINK}) |" README.md
