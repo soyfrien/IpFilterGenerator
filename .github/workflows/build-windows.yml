@@ -20,9 +20,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-            ref: ${{ github.ref_name }}
-            fetch-depth: 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -77,3 +74,4 @@ jobs:
             git add README.md
             git commit -m "Update VirusTotal badge"
             git push
+            git push origin HEAD:${GITHUB_REF#refs/heads/}
