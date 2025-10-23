@@ -23,7 +23,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-            ref: ${{ github.ref_name }}
+            ref: main
             fetch-depth: 0
 
       - name: Setup .NET
@@ -70,9 +70,6 @@ jobs:
         with:
             vt_api_key: ${{ secrets.VT_API_KEY }}
             files: ./IpFilterConsole-${{ matrix.runtime }}.zip
-
-      - name: Pull latest
-        run: git pull origin main
 
       - name: Update README
         run: |

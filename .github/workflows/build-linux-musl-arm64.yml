@@ -21,7 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-            ref: ${{ github.ref_name }}
+            ref: main
             fetch-depth: 0
 
       - name: Setup .NET
@@ -96,9 +96,6 @@ jobs:
         run: |
             sed -i '/<\/PropertyGroup>/i <PublishAot>True</PublishAot>' IpFilterConsole/IpFilterConsole.csproj
             sed -i '/<PackageReference Include="Microsoft\.DotNet\.ILCompiler; runtime\.linux-arm64\.Microsoft\.DotNet\.ILCompiler" Version="8\.0\.20" \/>/d' IpFilterConsole/IpFilterConsole.csproj
-
-      - name: Pull latest
-        run: git pull origin main
 
       - name: Update README
         run: |

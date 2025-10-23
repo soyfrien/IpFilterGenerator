@@ -21,7 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-            ref: ${{ github.ref_name }}
+            ref: main
             fetch-depth: 0
 
       - name: Setup .NET
@@ -73,9 +73,6 @@ jobs:
 
       - name: Restore csproj to main state
         run: mv IpFilterConsole/IpFilterConsole.csproj.bak IpFilterConsole/IpFilterConsole.csproj
-
-      - name: Pull latest
-        run: git pull origin main
 
       - name: Update README
         run: |
