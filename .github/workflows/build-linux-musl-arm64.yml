@@ -109,5 +109,5 @@ jobs:
             git config --global user.email "github-actions@github.com"
             git add README.md
             git commit -m "Update VirusTotal badge"
-            git fetch
+            git pull
             git push origin HEAD:main
