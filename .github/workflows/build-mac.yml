@@ -65,7 +65,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: VirusTotal Scan
-        id: vt_linux
+        id: vt_mac
         uses: crazy-max/ghaction-virustotal@v4
         with:
             vt_api_key: ${{ secrets.VT_API_KEY }}
@@ -77,6 +77,7 @@ jobs:
       - name: Update README
         run: |
             echo "VT_LINK=${{ steps.vt_mac.outputs.permalink }}" >> $GITHUB_ENV
+            echo "Permalink: $VT_LINK"
             DL_LINK="https://github.com/soyfrien/IpFilterGenerator/releases/download/v${{ env.VERSION }}/IpFilterConsole-${{ matrix.runtime }}.zip"
             sed -i '' '/build-mac.yml).*|.*|/c\
             | [![Build 🡢 Publish 🡢 Release (${{ matrix.runtime }})](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml) | [Scan Result]('"$VT_LINK"') | [Download]('"$DL_LINK"') |' README.md
