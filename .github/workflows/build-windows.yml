@@ -77,7 +77,7 @@ jobs:
         run: |
             git config --global user.name "github-actions"
             git config --global user.email "github-actions@github.com"
-            git config pull.rebase false
+            git config pull.rebase true
             git add README.md
             git commit -m "Update VirusTotal badge"
             git fetch
