@@ -5,7 +5,12 @@
 | [![Build 🡢 Publish 🡢 Release (linux-musl-arm64)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-musl-arm64.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-musl-arm64.yml) | [Scan Result]() | [Download](https://github.com/soyfrien/IpFilterGenerator/releases/download/v1.2.3.2/IpFilterConsole-linux-musl-arm64.zip) |
 | [![Build 🡢 Publish 🡢 Release (linux-x64)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux.yml) | [Scan Result]() | [Download](https://github.com/soyfrien/IpFilterGenerator/releases/download/v1.2.3.2/IpFilterConsole-linux-x64.zip) |
 | [![Build 🡢 Publish 🡢 Release (linux-x64)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux.yml) | [Scan Result]() | [Download](https://github.com/soyfrien/IpFilterGenerator/releases/download/v1.2.3.2/IpFilterConsole-linux-x64.zip) |
-| [![Build 🡢 Publish 🡢 Release (osx-x64)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml) | [Scan Result]() | [Download](https://github.com/soyfrien/IpFilterGenerator/releases/download/v1.2.3.2/IpFilterConsole-osx-x64.zip) |Generates an ipfilter.dat file for chosen countries.
+| [![Build 🡢 Publish 🡢 Release (osx-arm64)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml) | [Scan Result]() | [Download](https://github.com/soyfrien/IpFilterGenerator/releases/download/v1.2.3.2/IpFilterConsole-osx-arm64.zip) |
+| [![Build 🡢 Publish 🡢 Release (osx-x64)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml) | [Scan Result]() | [Download](https://github.com/soyfrien/IpFilterGenerator/releases/download/v1.2.3.2/IpFilterConsole-osx-x64.zip) |
+| [![Build 🡢 Publish 🡢 Release (win-x64)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml) | [Scan Result]() | [Download](https://github.com/soyfrien/IpFilterGenerator/releases/download/v1.2.3.2/IpFilterConsole-win-x64.zip) |
+
+
+Generates an ipfilter.dat file for chosen countries.
 
 ## Usage
 
