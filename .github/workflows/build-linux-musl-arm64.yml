@@ -85,3 +85,40 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
+  VirusTotal_Scan:
+    strategy:
+        matrix:
+            include:
+              - os: ubuntu-latest
+                runtime: linux-musl-arm64
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Download release
+        run: |
+          echo DL_LINK="https://github.com/soyfrien/IpFilterGenerator/releases/download/v${{ env.VERSION }}/IpFilterConsole-${{ matrix.runtime }}.zip" >> GITHUB_ENV
+          echo "VT_LINK=${{ steps.vt_linux.outputs.permalink }}" >> $GITHUB_ENV
+          wget -O ./IpFilterConsole-${{ matrix.runtime }}.zip $DL_LINK
+
+      - name: VirusTotal Scan
+        id: vt_linux
+        uses: crazy-max/ghaction-virustotal@v4
+        with:
+            vt_api_key: ${{ secrets.VT_API_KEY }}
+            files: ./IpFilterConsole-${{ matrix.runtime }}.zip
+
+
+      - name: Update README
+        run: |
+            sed -i "/build-linux-musl-arm64.yml).*|.*|/c\\| [![Build 🡢 Publish 🡢 Release (${{ matrix.runtime }})](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-musl-arm64.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-musl-arm64.yml) | [Scan Result](${VT_LINK}) | [Download](${DL_LINK}) |" README.md
+
+      - name: Commit README update
+        run: |
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+            git config pull.rebase true
+            git add README.md
+            git commit -m "Update VirusTotal badge"
+            git pull
+            git push origin HEAD:main
