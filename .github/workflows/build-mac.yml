@@ -107,7 +107,8 @@ jobs:
       - name: Update README
         run: |
             wget -O /var/tmp/README.md.tmp https://raw.githubusercontent.com/soyfrien/IpFilterGenerator/main/README.md
-            sed -i "/build-mac.yml).*|.*|/c\\| [![Build Release & VirusTotal Scan (${{ matrix.runtime }})](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml) | [Scan Result](${VT_LINK}) | [Download](${DL_LINK}) |" /var/tmp/README.md.tmp
+            sed -i '' '/build-mac.yml).*|.*|/c\
+            | [![Build Release & VirusTotal Scan (osx-x64)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-mac.yml) | [Scan Result]('"$VT_LINK"') | [Download]('"$DL_LINK"') |' /var/tmp/README.md.tmp
 
       - name: Checkout code
         uses: actions/checkout@v4
