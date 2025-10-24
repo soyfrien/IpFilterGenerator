@@ -79,11 +79,11 @@ jobs:
     steps:
       - name: Extract version
         id: version
-        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
+        run: VERSION=${GITHUB_REF_NAME#v}
 
       - name: Download release
         run: |
-          DL_LINK=https://github.com/soyfrien/IpFilterGenerator/releases/download/v${{ env.VERSION }}/IpFilterConsole-${{ matrix.runtime }}.zip
+          DL_LINK=https://github.com/soyfrien/IpFilterGenerator/releases/download/v$VERSION/IpFilterConsole-${{ matrix.runtime }}.zip
           VT_LINK=${{ steps.vt_linux.outputs.permalink }}
             for i in {1..3}; do
                 sleep 10
