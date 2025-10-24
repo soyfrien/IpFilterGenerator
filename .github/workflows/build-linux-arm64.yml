@@ -91,8 +91,8 @@ jobs:
     steps:
       - name: Download release
         run: |
-          echo DL_LINK="https://github.com/soyfrien/IpFilterGenerator/releases/download/v${{ env.VERSION }}/IpFilterConsole-${{ matrix.runtime }}.zip" >> GITHUB_ENV
-          echo "VT_LINK=${{ steps.vt_linux.outputs.permalink }}" >> $GITHUB_ENV
+          DL_LINK=https://github.com/soyfrien/IpFilterGenerator/releases/download/v${{ env.VERSION }}/IpFilterConsole-${{ matrix.runtime }}.zip
+          VT_LINK=${{ steps.vt_linux.outputs.permalink }}
           wget -O ./IpFilterConsole-${{ matrix.runtime }}.zip $DL_LINK
 
       - name: VirusTotal Scan
@@ -105,7 +105,7 @@ jobs:
 
       - name: Update README
         run: |
-            sed -i "/build-linux-arm64.yml).*|.*|/c\\| [![Build 🡢 Publish 🡢 Release (${{ matrix.runtime }})](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-arm64.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-arm64.yml) | [Scan Result](${VT_LINK}) | [Download](${DL_LINK}) |" README.md
+            sed -i "/build-linux-arm64.yml).*|.*|/c\\| [![Build Release & VirusTotal Scan (${{ matrix.runtime }})](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-arm64.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-arm64.yml) | [Scan Result](${VT_LINK}) | [Download](${DL_LINK}) |" README.md
 
       - name: Commit README update
         run: |
