@@ -61,18 +61,12 @@ jobs:
     strategy:
         matrix:
             include:
-              - os: ubuntu-latest
+              - os: windows-latest
                 runtime: win-x64
 
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-            ref: main
-            fetch-depth: 0
-
       - name: Extract version
         id: version
         run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
@@ -105,11 +99,17 @@ jobs:
         run: |
             sed -i "/build-windows.yml).*|.*|/c\\| [![Build Release & VirusTotal Scan (${{ matrix.runtime }})](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-windows.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-windows.yml) | [Scan Result](${VT_LINK}) | [Download](${DL_LINK}) |" README.md
 
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+            ref: main
+            fetch-depth: 0
+
       - name: Commit README update
         run: |
             git config --global user.name "github-actions"
             git config --global user.email "github-actions@github.com"
-            git config pull.rebase true
+            git config pull.rebase false
             git add README.md
             git commit -m "Update VirusTotal badge"
             git pull
