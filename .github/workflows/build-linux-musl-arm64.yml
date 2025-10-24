@@ -1,4 +1,4 @@
-﻿name: Build 🡢 Publish 🡢 Release (Linux musl Arm64)
+﻿name: Build Release & VirusTotal Scan (Linux musl Arm64)
 
 permissions:
   contents: write
@@ -103,7 +103,16 @@ jobs:
         run: |
           DL_LINK=https://github.com/soyfrien/IpFilterGenerator/releases/download/v${{ env.VERSION }}/IpFilterConsole-${{ matrix.runtime }}.zip
           VT_LINK=${{ steps.vt_linux.outputs.permalink }}
-          wget -O ./IpFilterConsole-${{ matrix.runtime }}.zip $DL_LINK
+            for i in {1..3}; do
+                sleep 10
+                wget -O ./IpFilterConsole-${{ matrix.runtime }}.zip "$DL_LINK" && break
+                echo "Attempt $i failed. Retrying..."
+            done
+
+            if [ ! -f ./IpFilterConsole-${{ matrix.runtime }}.zip ]; then
+                echo "Download failed after 3 attempts."
+                exit 1
+            fi
 
       - name: VirusTotal Scan
         id: vt_linux
