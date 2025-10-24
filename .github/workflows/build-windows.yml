@@ -57,28 +57,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: VirusTotal Scan
-        id: vt_windows
-        uses: crazy-max/ghaction-virustotal@v4
-        with:
-            vt_api_key: ${{ secrets.VT_API_KEY }}
-            files: ./IpFilterConsole-${{ matrix.runtime }}.zip
-
-      - name: Update README
-        shell: bash
-        run: |
-            echo "VT_LINK=${{ steps.vt_windows.outputs.permalink }}" >> $GITHUB_ENV
-            echo "Permalink: $VT_LINK"
-            echo "DL_LINK=https://github.com/soyfrien/IpFilterGenerator/releases/download/v${{ env.VERSION }}/IpFilterConsole-${{ matrix.runtime }}.zip" >> $GITHUB_ENV
-            grep -q 'build-windows.yml' README.md || echo "| [![Build 🡢 Publish 🡢 Release (Windows)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-windows.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-windows.yml) | [Scan Result](${VT_LINK}) | [Download](${DL_LINK}) |" >> README.md
-            printf '%s\n' '/build-windows.yml).*|.*|/c\' "| [![Build 🡢 Publish 🡢 Release (Windows)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-windows.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-windows.yml) | [Scan Result]($VT_LINK) | [Download]($DL_LINK) |" | sed -i '' -f - README.md
-      
-      - name: Commit README update
-        run: |
-            git config --global user.name "github-actions"
-            git config --global user.email "github-actions@github.com"
-            git config pull.rebase true
-            git add README.md
-            git commit -m "Update VirusTotal badge"
-            git fetch
-            git push origin HEAD:main
