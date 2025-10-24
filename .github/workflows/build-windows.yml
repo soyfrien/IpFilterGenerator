@@ -65,6 +65,7 @@ jobs:
                 runtime: win-x64
 
     runs-on: ${{ matrix.os }}
+    needs: build
 
     steps:
       - name: Extract version
