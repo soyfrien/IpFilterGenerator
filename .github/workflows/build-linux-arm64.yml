@@ -121,7 +121,7 @@ jobs:
       - name: Update README
         run: |
             DL_LINK=https://github.com/soyfrien/IpFilterGenerator/releases/download/v$VERSION/IpFilterConsole-${{ matrix.runtime }}.zip
-            VT_LINK=$ANALYSIS
+            VT_LINK=$analysis
             wget -O /var/tmp/README.md.tmp https://raw.githubusercontent.com/soyfrien/IpFilterGenerator/main/README.md
             sed -i "/build-linux-arm64.yml).*|.*|/c\\| [![Build Release & VirusTotal Scan (${{ matrix.runtime }})](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-arm64.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux-arm64.yml) | [Scan Result]($VT_LINK) | [Download]($DL_LINK) |" /var/tmp/README.md.tmp
 
