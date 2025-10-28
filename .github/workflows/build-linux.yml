@@ -102,29 +102,5 @@ jobs:
         uses: crazy-max/ghaction-virustotal@v4
         with:
             vt_api_key: ${{ secrets.VT_API_KEY }}
+            update_release_body: true
             files: ./IpFilterConsole-${{ matrix.runtime }}.zip
-
-
-      - name: Update README
-        run: |
-            echo "VT_LINK=${{ steps.vt_linux.outputs.permalink }}" >> $GITHUB_ENV
-            DL_LINK=https://github.com/soyfrien/IpFilterGenerator/releases/download/v$VERSION/IpFilterConsole-${{ matrix.runtime }}.zip
-            wget -O /var/tmp/README.md.tmp https://raw.githubusercontent.com/soyfrien/IpFilterGenerator/main/README.md
-            sed -i "/build-linux.yml).*|.*|/c\\| [![Build Release & VirusTotal Scan (${{ matrix.runtime }})](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux.yml/badge.svg)](https://github.com/soyfrien/IpFilterGenerator/actions/workflows/build-linux.yml) | [Scan Result](${{ env.VERSION }}) | [Download]($DL_LINK) |" /var/tmp/README.md.tmp
-
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-            ref: main
-            fetch-depth: 0
-
-      - name: Commit README update
-        run: |
-            git config --global user.name "github-actions"
-            git config --global user.email "github-actions@github.com"
-            git config pull.rebase false
-            mv /var/tmp/README.md.tmp README.md
-            git add README.md
-            git commit -m "Update VirusTotal badge"
-            git pull
-            git push origin HEAD:main
